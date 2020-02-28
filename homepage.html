@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  
+
+<style>
+
+.navbar {
+  width: 100%;
+  background-color: #555;
+  overflow: auto;
+}
+.nav > li > a:focus, .nav > li > a:hover
+{
+  background-color: #3b5998;
+  color:white;
+}
+.navbar a {
+  float: left;
+  padding: 12px;
+  color: white;
+  text-decoration: none;
+  font-size: 17px;
+  width: 25%; /* Four links of equal widths */
+  text-align: center;
+  height: 20px;
+}
+
+.navbar a:hover {
+  background-color: #3b5998;
+}
+
+.navbar a.active {
+  background-color: #4CAF50;
+}
+
+@media screen and (max-width: 500px) {
+  .navbar a {
+    float: none;
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+
+div.gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 350px;
+  height: 255px;
+}
+
+body{
+  background-color:#f7f7f7;
+}
+
+.container{
+   margin-left:300px;
+}
+
+
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 350px;
+  height: 200px;
+}
+
+div.desc {
+  padding: 10px;
+  text-align: center;
+  font-family: "Times New Roman", Times, serif;
+
+}
+
+img {
+  opacity: 1.0;
+  filter: alpha(opacity=50); /* For IE8 and earlier */
+}
+
+img:hover {
+  opacity: 0.5;
+  filter: alpha(opacity=100); /* For IE8 and earlier */
+}
+
+h1{font-size:350%;
+}
+
+div.outer{
+  width:1350px;
+  padding-left:150px;
+  padding-right:50px;
+}
+
+.sidebar {
+  margin: 0;
+  padding-top: 250px;
+  top: -10px;
+  width: 200px;
+  background: rgba(0,0,225,0.5);
+
+  position: fixed;                                           
+  height: 120%;
+  overflow: auto;
+}
+
+.sidebar a {
+  display: block;
+  color: white;
+  padding: 16px;
+  text-decoration: none;
+  
+}
+ 
+.sidebar a.active {
+  background-color: #3b5998;
+  color: white;
+}
+
+.sidebar a:hover:not(.active) {
+  background-color:grey;
+  color: white;
+}
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+
+.outer1{
+  width:1350px;
+  padding-left:150px;
+  padding-right:50px;
+  background-color:#f7f7f7;
+}
+.container1{
+   margin-left:1300px;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #3b5998;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  font-size : 15px;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+  position: relative;
+}
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+  margin-left: 210px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+ margin-left : 20px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+  margin-left: 0px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 40%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)} 
+  to {-webkit-transform: scale(1)}
+}
+  
+@keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+	 margin-left : 20px;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
+.abc{
+  float: right;
+  position:fixed;
+  left:1300px;
+}
+
+
+
+body{
+  background-image: url('clg2.jpg');
+	background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+
+.container2 {
+  position: relative;
+  max-width: 1000px; /* Maximum width */
+  margin-left: 30px;
+}
+
+.container2 .content {
+  position: absolute; /* Position the background text */
+   /* At the bottom. Use top:0 to append it to the top */1
+  background: rgb(0, 0, 0); /* Fallback color */
+  background: rgba(0,0,0, 0.3); /* Black background with 0.5 opacity */
+  color: #f1f1f1; /* Grey text */
+  width: 110%; /* Full width */
+  padding: 10px; /* Some padding */
+}
+div.img1 {
+  opacity: 0.5;
+  transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+ -webkit-transition: opacity 1s ease-in-out;
+ }
+div.img1:hover {
+  opacity: 1.0;
+  transition: opacity .55s ease-in-out;
+ -moz-transition: opacity .55s ease-in-out;
+ -webkit-transition: opacity .55s ease-in-out;
+}
+button.logout{
+  background-color:green;
+  margin-left:88%;
+  margin-bottom:5px;
+  width : 150px;
+}
+</style>
+</head>
+<body>
+
+  <!-- <div class="container1">  -->
+        <!-- <h1>  -->
+     
+      <!-- <button onclick="document.getElementById('id02').style.display='block'" class='btn btn-success pull-right'>  -->
+        <!-- ADMIN -->
+          <!-- </button>  -->
+    <!-- </h1>  -->
+    <!-- </div> -->
+	<button  onclick="document.getElementById('id02').style.display='block'" class="logout">ADMIN</button>
+	
+	<div class = "img1">
+<img  src="pictures\logo.png" style="margin-left:600px;" alt="BIT">
+</div>
+
+	
+	
+	
+<div class="sidebar">
+  <a data-toggle="tab" href="#home">Home</a>
+  <a href="signin.html">Student Login</a>
+  <a href="teachersignin.html">Teacher Login</a>
+  <a href="register.html">Student Registration</a>
+  <a href="registerteacher.html">Teacher Registration</a>
+</div>
+
+<div class="tab-content">
+<div id="home" class="tab-pane fade in active">
+
+<div class="container">
+<div class="container2">
+ <div class="content">
+<h1 style="text-align:center;color:white;">BANGALORE INSTITUTE OF TECHNOLOGY</h1>
+
+</br>
+	</br>
+
+<ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+    <li><a href="signin.html" style="color:white;background-color:rgba(0, 0, 0, 0.5);">Student Login</a></li>
+      <li><a href="teachersignin.html" style="color:white;background-color:rgba(0, 0, 0, 0.5);">Teacher Login</a></li>
+      <li><a href="register.html" style="color:white;background-color:rgba(0, 0, 0, 0.5);">Student Registration</a></li>
+      <li><a href="registerteacher.html" style="color:white;background-color:rgba(0, 0, 0, 0.5);">Teacher Registration</a></li>
+    </ul>
+	
+
+
+
+<div class="gallery">
+  <a target="_blank" href="signin.html">
+    <img src="pictures\is.jpg" alt="Cinque Terre" width="600" height="400">
+  </a>
+  <div class="desc"><b>INFORMATION SCIENCE & ENGINEERING</b></div>
+</div>
+<div class="gallery">
+  <a target="_blank" href="signin.html">
+    <img src="pictures\civ.jpg" alt="Cinque Terre" width="600" height="400">
+  </a>
+  <div class="desc"><b>CIVIL ENGINEERING</b></div>
+</div>
+
+<div class="gallery">
+  <a target="_blank" href="signin.html">
+    <img src="pictures\cse.jpg" alt="Cinque Terre" width="600" height="400">
+  </a>
+  <div class="desc"><b>COMPUTER SCIENCE ENGINEERING</b></div>
+</div>
+<div class="gallery">
+  <a target="_blank" href="signin.html">
+    <img src="pictures\eee.jpg" alt="Cinque Terre" width="600" height="400">
+  </a>
+  <div class="desc"><b>ELECTRICAL & ELECTRONICS ENGIENEERING</b></div>
+</div>
+
+<div class="gallery">
+  <a target="_blank" href="signin.html">
+    <img src="pictures\ec.jpg" alt="Cinque Terre" width="600" height="400">
+  </a>
+  <div class="desc"><b>ELECTRONICS & COMMUNICATION ENGINEERING</b></div>
+</div>
+
+
+<div class="gallery">
+  <a target="_blank" href="signin.html">
+    <img src="pictures\it.jpg" alt="Cinque Terre" width="600" height="400">
+  </a>
+  <div class="desc"><b>ELECTRONICS & INSTRUMENTATION ENGINEERING</b></div>
+</div>
+
+
+<div class="gallery">
+  <a target="_blank" href="signin.html">
+    <img src="pictures\me.jpg" alt="Forest" width="600" height="400">
+  </a>
+  <div class="desc"><b>MECHANICAL ENGINEERING</b></div>
+</div>
+
+
+<div class="gallery">
+  <a target="_blank" href="signin.html">
+    <img src="pictures\tc.jpg" alt="Mountains" width="600" height="400">
+  </a>
+  <div class="desc"><b>ELECTRONICS & TELECOMMUNICATION ENGINEERING</b></div>
+</div>
+         
+<div class="gallery">
+  <a target="_blank" href="signin.html">
+    <img src="pictures\aero.jpg" alt="Cinque Terre" width="600" height="400">
+  </a>
+  <div class="desc"><b>AERONAUTICAL ENGINEERING</b></div>
+</div>
+
+<div class="gallery">
+  <a target="_blank" href="signin.html">
+    <img src="pictures\auto.png" alt="Cinque Terre" width="600" height="400">
+  </a>
+  <div class="desc"><b>AUTOMOBILE ENGINEERING</b></div>
+</div>
+
+<div class="gallery">
+  <a target="_blank" href="signin.html">
+    <img src="pictures\bio.jpg" alt="Cinque Terre" width="600" height="400">
+  </a>
+  <div class="desc"><b>BIOTECHNOLOGY</b></div>
+</div>
+
+<div class="gallery">
+  <a target="_blank" href="signin.html">
+    <img src="pictures\chem.jpg" alt="Cinque Terre" width="600" height="400">
+  </a>
+  <div class="desc"><b>CHEMICAL ENGINEERING</b></div>
+</div>
+
+
+
+<div class="gallery">
+  <a target="_blank" href="signin.html">
+    <img src="pictures\ctm.jpg" alt="Cinque Terre" width="600" height="400">
+  </a>
+  <div class="desc"><b>CONSTRUCTION TECHNOLOGY & MANAGEMENT</b></div>
+</div>
+
+
+
+<div class="gallery">
+  <a target="_blank" href="signin.html">
+    <img src="pictures\im.png" alt="Cinque Terre" width="600" height="400">
+  </a>
+  <div class="desc"><b>INDUSTRIAL ENGINEERING & MANAGEMENT</b></div>
+</div>
+
+
+
+<div class="gallery">
+  <a target="_blank" href="signin.html">
+    <img src="pictures\med.jpg" alt="Northern Lights" width="600" height="400">
+  </a>
+  <div class="desc"><b>MEDICAL ELECTRONICS</b></div>
+</div>
+
+ 
+         
+
+
+</div>
+</div>
+
+<div id="id02" class="modal">
+  
+  <form class="modal-content animate" action="admin.php" method="post">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+       <img src="pictures\admin.png" alt="Avatar" class="avatar" width=auto height=auto>
+    </div>
+
+    <div class="container" style="margin-left: 0px;">
+      <label for="USN"><b>ID</b></label></br>
+      <input type="text" placeholder="Enter ID" name="USN" width="10" required>
+		</br>
+      <label for="psw"><b>Password</b></label></br>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+        </br>
+      <button type="submit" style="width:200px;">Login</button></br>
+      <label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+      </label>
+	  </br>
+	  
+	   <div class="container"  style="background-color:#f1f1f1;margin-left: 0px;width:560px">
+	    <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn" style="width:200px">Cancel</button>
+		<span class="psw">Forgot <a href="#">password?</a></span>
+		</div>
+    </div>
+
+   
+  </form>
+</div>
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+
+</body>
+</html>
